@@ -1,0 +1,355 @@
+programme no 1:C program to find the sum of 'n' numbers.
+Roll no:1
+Name:Abdul Janeeb k
+
+program code:-
+
+#include<stdio.h>
+int main()
+{	
+	int ary[10];
+	int elements;
+	int i;
+	int sum=0;
+	printf("enter size:");
+	scanf("%d",&elements);
+	for(i=0;i<elements;i++)
+	{
+		printf("element %d : ",i+1);
+		scanf("%d",&ary[i]);
+	}
+	for(i=0;i<elements;i++)
+	{
+		sum=sum+ary[i];
+	}
+	printf("sum =%d",sum);
+	return(0);
+}
+
+
+----------------------------------------------------------------------------------------------------------------
+
+
+programme no 2:C program to merge two sorted arrays.
+
+programme code:-
+ 
+#include <stdio.h>
+
+void insert_elements(int arr[], int size) 
+{
+	printf("Enter %d elements of array: ", size);
+        for (int i = 0; i < size; i++) 
+{
+        scanf("%d", &arr[i]);
+    }
+}
+
+void sort(int arr[], int size) 
+{
+
+	for (int i = 0; i < size - 1; i++) 
+       {
+        	for (int j = i; j < size - i - 1; j++) 
+    		{
+        		if (arr[j] > arr[j + 1]) 
+    			{
+        			int temp = arr[j];
+        			arr[j] = arr[j + 1];
+       				arr[j + 1] = temp;
+            }
+        }
+    }
+}
+
+void merge_array(int arr1[], int arr2[], int size1, int size2, int merged[]) 
+{
+	int i = 0;
+        int j = 0;
+        int k = 0;
+
+        	while (i < size1 && j < size2) 
+{
+        	if (arr1[i] < arr2[j]) 
+{
+            	merged[k++] = arr1[i++];
+        } 
+		else 
+{
+            merged[k++] = arr2[j++];
+        }
+    }
+
+    	while (i < size1) 
+{
+        merged[k++] = arr1[i++];
+    }
+
+    	while (j < size2) 
+{
+        merged[k++] = arr2[j++];
+    }
+}
+
+int main() {
+	int size1, size2;
+
+    	printf("Enter size of the first array: ");
+    	scanf("%d", &size1);
+    	int arr1[size1];
+    	insert_elements(arr1, size1);
+
+    	printf("Enter size of the second array: ");
+    	scanf("%d", &size2);
+    	int arr2[size2];
+    	insert_elements(arr2, size1);
+
+    	printf("Elements of first array before sorting: ");
+    	for (int i = 0; i < size1; i++)
+ {
+        printf("%d ", arr1[i]);
+    }
+    	printf("\n");
+
+    	printf("Elements of second array before sorting: ");
+    	for (int i = 0; i < size2; i++) 
+{
+        printf("%d ", arr2[i]);
+    }
+    	printf("\n");
+
+    	sort(arr1, size1);
+    	sort(arr2, size2);
+
+    	printf("Elements of first array after sorting: ");
+    	for (int i = 0; i < size1; i++) 
+{
+        printf("%d ", arr1[i]);
+    }
+    	printf("\n");
+
+    	printf("Elements of second array after sorting: ");
+    	for (int i = 0; i < size2; i++) 
+{
+        printf("%d ", arr2[i]);
+    }
+    	printf("\n");
+
+    	int merge[size1 + size2];
+    	merge_array(arr1, arr2, size1, size2, merge);
+
+    	printf("Elements of merged array: ");
+    	for (int i = 0; i < size1 + size2; i++) 
+{
+        printf("%d ", merge[i]);
+    }
+    	printf("\n");
+
+    return 0;
+}
+
+
+-------------------------------------------------------------------------------------------------------
+
+
+programme no3:C program to create a STACK using array data structure and implement the operations PUSH, POP and TRAVESE.
+
+programme code:-
+
+#include<stdio.h>
+#define max 5
+
+	int stack[max];
+	int top=-1;
+	int item;
+
+
+void push()
+{
+	if(top==max-1)
+	{
+		printf("Stack is full\n");
+	}
+	else
+	{
+		printf("enter item to be pushed :");
+		scanf("%d",&item);
+		top=top+1;
+		stack[top]=item;
+		printf("pushed item : %d\n", item);
+	}	
+}
+void pop()
+{
+	if(top<0)
+	{
+	printf("stack is empty");
+	}
+	else
+	{
+		printf("Popped item :%d\n",stack[top]);
+		int poppeditem=stack[top];
+		top--;
+	}
+}
+void traversal()
+{
+	if(top<0)
+	{
+		printf("Stack is empty\n");
+	}
+	else
+	{
+		printf("stack items are : ");
+		for(int i=top; i>=0; i--)
+		{
+			printf("%d\t\n",stack[i]);
+
+		}
+	}
+}
+int main()
+{
+	int choice;
+	
+	
+	do
+	{
+		printf("1. push\n2. pop\n3. Traversel\n4. Exit\n");
+        	printf("Enter your choice: ");
+		scanf("%d",&choice);
+		switch(choice)
+		{
+			case 1:
+				push();
+				break;
+			case 2:
+				pop();
+				break;
+			case 3:
+				traversal();
+				printf("traversal");
+				break;
+			case 4:
+				break;
+	
+			default:
+				printf("you have chosen wrong choice");
+
+		}
+ 	}while(choice !=4);
+	 return(0);
+}
+
+-----------------------------------------------------------------------------------
+ 	
+programme no 4:    C program to create a QUEUE using array data structure and implement the operations ENQUEUE, DEQUEUE and TRAVERSE.
+
+programme code:-
+
+
+#include <stdio.h>
+
+
+	int queue[20];
+	int front = -1;
+	int rear = -1;
+
+int isEmpty() 
+{
+    	return front == -1;
+}
+
+int isFull() 
+{
+    	return rear == 20 - 1;
+}
+
+
+void enqueue(int element) 
+{
+    if (isFull()) 
+{
+        printf("Queue is full\n");
+        return;
+    }
+   	 if (isEmpty())
+ {
+        	front = rear = 0;
+    } else 
+	{
+	        rear++;
+	 }
+    	queue[rear] = element;
+    	printf("%d enqueued to queue\n", element);
+}
+
+int dequeue() 
+{
+    	if (isEmpty()) 
+{
+        	printf("Queue is empty\n");
+        return -1;
+    }
+    	int element = queue[front];
+    	if (front == rear) 
+{
+        front = rear = -1; 
+    } else
+ {
+        front++;
+    }
+    	return element;
+}
+
+
+void traversel() 
+{
+    	if (isEmpty())
+ {
+        printf("Queue is empty\n");
+        return;
+    }
+    	printf("Queue elements: ");
+    	for (int i = front; i <= rear; i++) 
+{
+        printf("%d ", queue[i]);
+    }
+    	printf("\n");
+}
+
+int main() 
+{
+    	int choice, element;
+    	while (1) 
+{
+        printf("1. Enqueue\n2. Dequeue\n3. Traverse\n4. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice) 
+ {
+            case 1:
+                printf("Enter element to enqueue: ");
+                scanf("%d", &element);
+                enqueue(element);
+                break;
+            case 2:
+                element = dequeue();
+                if (element != -1) 
+                {
+                    printf("Dequeued element: %d\n", element);
+                }
+                break;
+            case 3:
+                traverse();
+                break;
+            case 4:
+                return 0;
+            default:
+                printf("Invalid choice. Please try again.\n");
+        }
+    }
+    return 0;
+}
+
