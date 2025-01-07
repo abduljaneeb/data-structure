@@ -1,104 +1,79 @@
-#include <stdio.h>
+#include<stdio.h>
+#define max 5
+int queue[max];
+int rear=-1;
+int front=-1;
+int item;
 
-
-	int queue[20];
-	int front = -1;
-	int rear = -1;
-
-int isEmpty() 
-{
-    	return front == -1;
-}
-
-int isFull() 
-{
-    	return rear == 20 - 1;
-}
-
-
-void enqueue(int element) 
-{
-    if (isFull()) 
-{
-        printf("Queue is full\n");
-        return;
-    }
-   	 if (isEmpty())
- {
-        	front = rear = 0;
-    } else 
-	{
-	        rear++;
-	 }
-    	queue[rear] = element;
-    	printf("%d enqueued to queue\n", element);
-}
-
-int dequeue() 
-{
-    	if (isEmpty()) 
-{
-        	printf("Queue is empty\n");
-        return -1;
-    }
-    	int element = queue[front];
-    	if (front == rear) 
-{
-        front = rear = -1; 
-    } else
- {
-        front++;
-    }
-    	return element;
-}
-
-
-void traversel() 
-{
-    	if (isEmpty())
- {
-        printf("Queue is empty\n");
-        return;
-    }
-    	printf("Queue elements: ");
-    	for (int i = front; i <= rear; i++) 
-{
-        printf("%d ", queue[i]);
-    }
-    	printf("\n");
-}
-
-int main() 
-{
-    	int choice, element;
-    	while (1) 
-{
-        printf("1. Enqueue\n2. Dequeue\n3. Traverse\n4. Exit\n");
-        printf("Enter your choice: ");
-        scanf("%d", &choice);
-
-        switch (choice) 
- {
-            case 1:
-                printf("Enter element to enqueue: ");
-                scanf("%d", &element);
-                enqueue(element);
-                break;
-            case 2:
-                element = dequeue();
-                if (element != -1) 
-                {
-                    printf("Dequeued element: %d\n", element);
-                }
-                break;
-            case 3:
-                traverse();
-                break;
-            case 4:
-                return 0;
-            default:
-                printf("Invalid choice. Please try again.\n");
+void enqueue(){
+        if(rear==max-1){
+            printf("queue is full");
         }
+        else{
+
+            printf("value to be inserted  : ");
+            scanf("%d",&item);
+            if(front == -1){
+                front = 0;
+            }
+                rear++;
+                queue[rear]=item;
+                printf("enqueueed item :%d",item);
+        }
+        printf("\n\n");
     }
-    return 0;
+void dequeue(){
+        if(front==-1 || front > rear){
+            printf("queue is empty\n");
+        }
+        else {
+            printf("dequeued items\n : %d",queue[front]);
+            front ++;
+        }
+        printf("\n\n");
 }
+void traversal(){
+    if(front==-1){
+        printf("queue is empty");
+    }
+    else{
+            printf("queue items :");
+        for(int i = front ; i <= rear ; i++){
+            printf("%d",queue[i]);
+        }
+        printf("\n\n");
+    }
+    printf("\n\n");
+}
+
+int main(){
+    int choice;
+    do{
+        printf("menu\n");
+        printf("1.enqueue\n");
+        printf("2.dequeue\n");
+        printf("3.traversal\n");
+        printf("4.exit\n");
+        scanf("%d",&choice);
+         switch(choice)
+         {
+         case 1:
+            enqueue();
+            break;
+         case 2:
+            dequeue();
+            break;
+         case 3:
+            traversal() ;
+            break;
+         case 4:
+            break;
+         default:
+            printf("you are wrong\n");
+
+         }
+    }
+         while(choice != 4);
+         return 0;
+    }
+
